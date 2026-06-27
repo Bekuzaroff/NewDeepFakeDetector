@@ -2,7 +2,8 @@ import os
 from flask import Flask
 from dotenv import load_dotenv
 
-from db.db import db # database instance
+from db.db import db
+from api_methods.auth.auth import greet, signup_user # database instance and tables
 
 load_dotenv() # loads all custom env variables
 
@@ -29,6 +30,16 @@ def create_app():
     return app
 
 app = create_app() # our main object of backend
+
+
+
+@app.post("/auth/new_user") # all the API routes |
+def create_user():
+    return signup_user()
+
+@app.get("/")
+def greeting():
+    return greet()
 
 
 

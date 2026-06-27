@@ -14,7 +14,7 @@ class User(db.Model):
     __tablename__ = "users" 
     user_id: Mapped[int] = mapped_column(primary_key=True)
     username: Mapped[str] = mapped_column(nullable=False, unique=True)
-    pswrd: Mapped[int] = mapped_column(nullable=False)
+    pswrd: Mapped[str] = mapped_column(nullable=False)
     create_date: Mapped[datetime] = mapped_column()
 
     def __repr__(self):
