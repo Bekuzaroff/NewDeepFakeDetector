@@ -3,7 +3,7 @@ from flask import Flask
 from dotenv import load_dotenv
 
 from db.db import db
-from api_methods.auth.auth import greet, signup_user # database instance and tables
+from api_methods.auth.auth import greet, signin_user, signup_user # database instance and tables
 
 load_dotenv() # loads all custom env variables
 
@@ -33,9 +33,13 @@ app = create_app() # our main object of backend
 
 
 
-@app.post("/auth/new_user") # all the API routes |
+@app.post("/auth/user/new/") # all the API routes |
 def create_user():
     return signup_user()
+
+@app.post("/auth/user/") # all the API routes |
+def sign_in():
+    return signin_user()
 
 @app.get("/")
 def greeting():
