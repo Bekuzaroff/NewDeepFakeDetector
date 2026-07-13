@@ -42,18 +42,10 @@ def signup_user():
 
         date_created = datetime.now()
 
-        # JWT GENERATION />
-
-        payload = {
-            "username": username # payload for jwt
-        }
-        payload["exp"] = datetime.now() + timedelta(hours=2400) # giving big expiration time for refresh token
-
-        SECRET = os.getenv("SECRET_KEY") # jwt secret
-        access_token = jwt.encode(payload, SECRET, "HS256")
-
+        
         user = User(username=username, pswrd=password, create_date=date_created) # user row to add to db
 
+        # JWT GENERATION />
         payload = {
             "user_id": user.user_id,
             "username": username # payload for jwt
@@ -129,6 +121,7 @@ def signin_user():
             status_code = 400
 
         return make_response(error_response, status_code)
+    
 def greet():
     return {
         "message": "hello! this is backend for my pet-project"
